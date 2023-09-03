@@ -34,7 +34,7 @@ section {
     border: 1px solid red;
 }
 
-.container {
+#container {
     border: 1px dotted blue;
 
     background-color: #FBFEF9;
