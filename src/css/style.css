@@ -51,3 +51,7 @@ section {
     display: flex;
     flex-direction: column;
   }
+
+.selected-project {
+    background-color: cadetblue;
+}

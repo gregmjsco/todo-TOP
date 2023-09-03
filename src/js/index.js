@@ -44,7 +44,7 @@ function addProjectToSidebar(project) {
       // Implement logic to display the selected project's tasks or details
       // You can use the "project" object to access its properties and tasks
       console.log(`Selected project: ${project.name}`);
-      if (e.target.classList.contains('project')) {
+      if (e && e.target && e.target.classList.contains('project')) {
         // Get the project index from the clicked project element's data attribute
         const projectIndex = e.target.dataset.projectIndex;
     
@@ -64,6 +64,7 @@ function addProjectToSidebar(project) {
         e.target.classList.add('selected-project');
 
         console.log("Selected project:", selectedProject); 
+        renderTodos();
       }
     });
   
@@ -96,15 +97,46 @@ const todoPrioritySelect = document.getElementById('todo-priority');
         const newTodo = new Todo(title, description, priority);
   
         // Add the new To-Do to the selected project
-        selectedProject.todos.push(newTodo);
+        selectedProject.todos.push(newTodo);    
   
         // Reset the form or update the UI as needed
         todoForm.reset();
   
         // Handle the new To-Do object as required
-        // ...
+    
   
-        // Optional: Update the project list or UI to reflect the changes
-        // ...
+        renderTodos();
       });
+
+      function renderTodos() {
+        const mainContent = document.querySelector('.main-content');
+        const projectDetails = document.getElementById('project-list');
+      
+        // Clear the existing project details
+        mainContent.innerHTML = '';
+      
+        if (!selectedProject || selectedProject.todos.length === 0) {
+          // Handle the case when no project is selected or there are no To-Do items
+          mainContent.textContent = 'No To-Do items for this project.';
+        } else {
+          // Create a list to display To-Do items
+          const todoList = document.createElement('ul');
+      
+          // Loop through the To-Do items in the selected project
+          selectedProject.todos.forEach((todo) => {
+            const todoItem = document.createElement('li');
+            todoItem.textContent = `Title: ${todo.title}, Description: ${todo.description}, Priority: ${todo.priority}, Due Date: ${todo.dueDate}`;
+            
+            // You can customize the format as needed
+            // For example: todoItem.textContent = `${todo.title} (${todo.priority})`;
+      
+            todoList.appendChild(todoItem);
+          });
+      
+          // Append the To-Do list to the project details section
+          mainContent.appendChild(todoList);
+        }
+      
+        // You can add additional logic or styling as needed
+      }
   
