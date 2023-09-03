@@ -4,13 +4,11 @@ import Project from './project.js';
 
 console.log("All good");
 
+const projects = [];
 
 // Select the form and input element
 const projectForm = document.getElementById('project-form');
 const projectNameInput = document.getElementById('project-name');
-
-// Select the sidebar where projects will be added
-const sidebar = document.querySelector('#sidebar');
 
 // Event listener for form submission
 projectForm.addEventListener('submit', (e) => {
@@ -19,14 +17,31 @@ projectForm.addEventListener('submit', (e) => {
   // Get the project name from the input
   const projectName = projectNameInput.value;
 
-  // Create a new project element
-  const projectElement = document.createElement('div');
-  projectElement.classList.add('project');
-  projectElement.textContent = projectName;
+  const newProject = new Project(projectName);
 
-  // Append the project element to the sidebar
-  sidebar.appendChild(projectElement);
+  projects.push(newProject)
+
+  addProjectToSidebar(newProject);
 
   // Clear the input field
   projectNameInput.value = '';
 });
+
+function addProjectToSidebar(project) {
+    const sidebar = document.querySelector('#sidebar');
+  
+    // Create a new project element
+    const projectElement = document.createElement('div');
+    projectElement.classList.add('project');
+    projectElement.textContent = project.name;
+  
+    // Add an event listener to handle project selection
+    projectElement.addEventListener('click', (e) => {
+      // Implement logic to display the selected project's tasks or details
+      // You can use the "project" object to access its properties and tasks
+      console.log(`Selected project: ${project.name}`);
+    });
+  
+    // Append the project element to the sidebar
+    sidebar.appendChild(projectElement);
+  }
