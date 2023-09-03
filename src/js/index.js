@@ -1,8 +1,11 @@
 import '../css/style.css';
 import Todo from './todo.js';
 import Project from './project.js';
+import { renderTodos } from './renderTodos.js';
+
 
 console.log("All good");
+
 
 const projects = [];
 
@@ -64,14 +67,13 @@ function addProjectToSidebar(project) {
         e.target.classList.add('selected-project');
 
         console.log("Selected project:", selectedProject); 
-        renderTodos();
+        renderTodos(selectedProject);
       }
     });
   
     // Append the project element to the sidebar
     sidebar.appendChild(projectElement);
   }
-
 
 
 const todoForm = document.getElementById('todo-form');
@@ -105,38 +107,8 @@ const todoPrioritySelect = document.getElementById('todo-priority');
         // Handle the new To-Do object as required
     
   
-        renderTodos();
+        renderTodos(selectedProject);
       });
 
-      function renderTodos() {
-        const mainContent = document.querySelector('.main-content');
-        const projectDetails = document.getElementById('project-list');
-      
-        // Clear the existing project details
-        mainContent.innerHTML = '';
-      
-        if (!selectedProject || selectedProject.todos.length === 0) {
-          // Handle the case when no project is selected or there are no To-Do items
-          mainContent.textContent = 'No To-Do items for this project.';
-        } else {
-          // Create a list to display To-Do items
-          const todoList = document.createElement('ul');
-      
-          // Loop through the To-Do items in the selected project
-          selectedProject.todos.forEach((todo) => {
-            const todoItem = document.createElement('li');
-            todoItem.textContent = `Title: ${todo.title}, Description: ${todo.description}, Priority: ${todo.priority}, Due Date: ${todo.dueDate}`;
-            
-            // You can customize the format as needed
-            // For example: todoItem.textContent = `${todo.title} (${todo.priority})`;
-      
-            todoList.appendChild(todoItem);
-          });
-      
-          // Append the To-Do list to the project details section
-          mainContent.appendChild(todoList);
-        }
-      
-        // You can add additional logic or styling as needed
-      }
+
   
