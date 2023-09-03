@@ -10,16 +10,34 @@
     <div id ="container">
         <section id = "sidebar">
             <h1>Sidebar</h1>
-            
+
             <form id="project-form">
                 <input type="text" id="project-name" placeholder="Enter project name">
                 <button type="submit">Add Project</button>
-              </form>
+            </form>
+            <div id="project-list">
+                <!-- Project elements will be generated here -->
+              </div>
         </section>
 
 
 
-        <section id = "main"> Main display</section>
+        <section id = "main"> 
+            <h1>Main display</h1>
+
+            <form id="todo-form">
+                <input type="text" id="todo-title" placeholder="Enter title" required>
+                <input type="text" id="todo-description" placeholder="Enter Description" required>
+                <input type="text" id="todo-date" placeholder="Enter date" required>
+                <select id="todo-priority" required>
+                    <option value="high">High</option>
+                    <option value="medium">Medium</option>
+                    <option value="low">Low</option>
+                  </select>
+                <button type="submit">Add Project</button>
+            </form>            
+
+        </section>
     </div>
 
     <script src="main.js"></script>
