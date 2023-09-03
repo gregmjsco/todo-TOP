@@ -29,4 +29,6 @@ class Todo {
       this.priority = newPriority;
     }
   }
+
+  export default Todo;
   

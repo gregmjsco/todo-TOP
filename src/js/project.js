@@ -1,4 +1,4 @@
-import './style.css';
+import '../css/style.css';
 
 class Project {
     constructor(name) {
@@ -17,5 +17,6 @@ class Project {
       }
     }
   
-    // You can add more methods as needed, such as getting a specific todo, listing todos, etc.
   }
+
+  export default Project;

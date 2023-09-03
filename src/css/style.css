@@ -46,3 +46,8 @@ section {
     gap: 2rem;
     padding: 1rem;
 }
+
+#project-form {
+    display: flex;
+    flex-direction: column;
+  }
